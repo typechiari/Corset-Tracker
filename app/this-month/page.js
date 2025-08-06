@@ -153,115 +153,115 @@ export default function ThisMonth() {
     );
   }
 
-  return (
+    return (
     <main className="h-screen p-2">
       <section className="h-full max-w-7xl mx-auto">
         <Menubar />
         
-                 <div className="flex flex-col gap-4 items-center justify-center h-[calc(100vh-120px)] mt-4">
-           {/* Fila superior: Calendario y Gráfica */}
-           <div className="flex flex-col lg:flex-row gap-6 w-full max-w-4xl">
-             {/* Calendario del mes */}
-             <div className="bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-md">
-               <div className="flex items-center justify-between mb-4">
-                 <h2 className="text-xl font-bold">Este mes</h2>
-                 <span className="text-lg font-medium text-primary">
-                   {new Date().toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
-                 </span>
-               </div>
-               <div className="grid grid-cols-7 gap-2">
-                 {monthData.map((dayData, index) => (
-                   <div
-                     key={index}
-                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200 ${
-                       dayData.woreIt
-                         ? 'bg-green-500 text-white shadow-lg'
-                         : dayData.hasData
-                         ? 'bg-red-500 text-white shadow-lg'
-                         : 'bg-transparent border-2 border-base-content/20 text-base-content/50'
-                     }`}
-                   >
-                     {dayData.day}
-                   </div>
-                 ))}
-               </div>
-             </div>
+        <div className="flex flex-col gap-3 md:gap-4 items-center justify-center h-[calc(100vh-120px)] mt-14 md:mt-4 px-2">
+          {/* Fila superior: Calendario y Gráfica */}
+          <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full max-w-4xl">
+            {/* Calendario del mes */}
+            <div className="bg-base-200 p-4 md:p-6 rounded-xl shadow-lg w-full max-w-md mt-14 md:mt-0">
+              <div className="flex items-center justify-between mb-3 md:mb-4">
+                <h2 className="text-xl md:text-xl font-bold">Este mes</h2>
+                <span className="text-base md:text-lg font-medium text-primary">
+                  {new Date().toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
+                </span>
+              </div>
+              <div className="grid grid-cols-7 gap-2 md:gap-3">
+                {monthData.map((dayData, index) => (
+                  <div
+                    key={index}
+                    className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-base font-medium transition-all duration-200 ${
+                      dayData.woreIt
+                        ? 'bg-green-500 text-white shadow-lg'
+                        : dayData.hasData
+                        ? 'bg-red-500 text-white shadow-lg'
+                        : 'bg-transparent border-2 border-base-content/20 text-base-content/50'
+                    }`}
+                  >
+                    {dayData.day}
+                  </div>
+                ))}
+              </div>
+            </div>
 
-             {/* Gráfica circular de porcentaje */}
-             <div className="bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-lg flex items-center justify-center">
-               <div className="flex flex-col items-center">
-                 <div className="relative w-64 h-64">
-                   <svg className="w-64 h-64 transform -rotate-90" viewBox="0 0 36 36">
-                     <path
-                       className="text-base-content/20"
-                       stroke="currentColor"
-                       strokeWidth="4"
-                       fill="none"
-                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                     />
-                     <path
-                       className="text-primary"
-                       stroke="currentColor"
-                       strokeWidth="4"
-                       strokeDasharray={`${percentage}, 100`}
-                       strokeLinecap="round"
-                       fill="none"
-                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                     />
-                   </svg>
-                   <div className="absolute inset-0 flex items-center justify-center">
-                     <span className="text-5xl font-bold text-white">{percentage}%</span>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
+            {/* Gráfica circular de porcentaje */}
+            <div className="bg-base-200 p-10 md:p-6 rounded-xl shadow-lg w-full max-w-lg flex items-center justify-center">
+              <div className="flex flex-col items-center">
+                <div className="relative w-48 h-48 md:w-64 md:h-64">
+                  <svg className="w-48 h-48 md:w-64 md:h-64 transform -rotate-90" viewBox="0 0 36 36">
+                    <path
+                      className="text-base-content/20"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      fill="none"
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                    <path
+                      className="text-primary"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      strokeDasharray={`${percentage}, 100`}
+                      strokeLinecap="round"
+                      fill="none"
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-3xl md:text-5xl font-bold text-white">{percentage}%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-           {/* Fila inferior: Racha y barra de progreso */}
-           <div className="bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-4xl">
-             <div className="flex items-center justify-center gap-3 mb-6">
-               {getCurrentLevelIcon() === "flame-off" ? (
-                 <Flame className="w-16 h-16 text-gray-400" />
-               ) : (
-                 <span className="text-5xl">{getCurrentLevelIcon()}</span>
-               )}
-               <span className="text-5xl font-bold text-white">{currentStreak}</span>
-             </div>
+          {/* Fila inferior: Racha y barra de progreso */}
+          <div className="bg-base-200 p-4 md:p-6 rounded-xl shadow-lg w-full max-w-4xl">
+            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8 my-8 md:my-0 mx-auto md:mx-0 max-w-sm md:max-w-none">
+              {getCurrentLevelIcon() === "flame-off" ? (
+                <Flame className="w-20 h-20 md:w-20 md:h-20 text-gray-400" />
+              ) : (
+                <span className="text-7xl md:text-6xl">{getCurrentLevelIcon()}</span>
+              )}
+              <span className="text-7xl md:text-6xl font-bold text-white">{currentStreak}</span>
+            </div>
 
-             {/* Barra de progreso de racha */}
-             <div className="space-y-3">
-               <div className="flex justify-between items-center text-sm">
-                 <div className="flex items-center gap-1">
-                   {getCurrentLevelIcon() === "flame-off" ? (
-                     <Flame className="w-4 h-4 text-gray-400" />
-                   ) : (
-                     <span className="text-orange-500">{getCurrentLevelIcon()}</span>
-                   )}
-                   <span className="text-white">{currentStreak} días</span>
-                 </div>
-                 <div className="flex items-center gap-1">
-                   <span className="text-orange-500">{getNextLevelIcon()}</span>
-                   <span className="text-white">{getNextLevelDays()} días</span>
-                 </div>
-               </div>
-               <div className="w-full bg-base-content/20 rounded-full h-2">
-                 <div 
-                   className="bg-primary h-2 rounded-full transition-all duration-500"
-                   style={{ width: `${getProgressPercentage()}%` }}
-                 ></div>
-               </div>
-               {/* Información de niveles de racha */}
-               <div className="flex justify-between items-center text-xs text-base-content/70 mt-2">
-                 <span>🔥 3 días: Iniciando</span>
-                 <span>⭐ 7 días: Constante</span>
-                 <span>🥇 14 días: Dedicado</span>
-                 <span>🏆 30 días: Experto</span>
-                 <span>👑 60 días: Maestro</span>
-                 <span>💎 100 días: Leyenda</span>
-               </div>
-             </div>
-           </div>
-         </div>
+            {/* Barra de progreso de racha */}
+            <div className="space-y-2 md:space-y-3">
+              <div className="flex justify-between items-center text-sm md:text-sm">
+                <div className="flex items-center gap-1">
+                  {getCurrentLevelIcon() === "flame-off" ? (
+                    <Flame className="w-4 h-4 md:w-4 md:h-4 text-gray-400" />
+                  ) : (
+                    <span className="text-orange-500">{getCurrentLevelIcon()}</span>
+                  )}
+                  <span className="text-white">{currentStreak} días</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-orange-500">{getNextLevelIcon()}</span>
+                  <span className="text-white">{getNextLevelDays()} días</span>
+                </div>
+              </div>
+              <div className="w-full bg-base-content/20 rounded-full h-2">
+                <div 
+                  className="bg-primary h-2 rounded-full transition-all duration-500"
+                  style={{ width: `${getProgressPercentage()}%` }}
+                ></div>
+              </div>
+              {/* Información de niveles de racha */}
+              <div className="grid grid-cols-2 md:flex md:justify-between items-center text-sm text-base-content/70 mt-2 gap-1">
+                <span>🔥 3 días</span>
+                <span>⭐ 7 días</span>
+                <span>🥇 14 días</span>
+                <span>🏆 30 días</span>
+                <span>👑 60 días</span>
+                <span>💎 100 días</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );

@@ -66,30 +66,30 @@ export default function ConfigEscoliosis() {
   };
 
   return (
-    <main className="min-h-screen bg-base-200 flex items-center justify-center p-4">
-      <section className="w-full max-w-md mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-base-content mb-2">
+    <main className="min-h-screen bg-base-200 flex items-center justify-center p-2 md:p-4">
+      <section className="w-full max-w-md mx-auto px-2">
+        <div className="text-center mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-base-content mb-2">
             Corset Tracker
           </h1>
-          <p className="text-base-content/70">
+          <p className="text-sm md:text-base text-base-content/70">
             Configuración inicial para comenzar tu seguimiento
           </p>
         </div>
 
         <div className="card bg-base-100 shadow-xl">
-          <div className="card-body">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="card-body p-4 md:p-6">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               {/* Información de Escoliosis */}
-              <div className="space-y-4">
-                <h2 className="text-xl font-bold text-base-content border-b border-gray-700 pb-2 text-center">
+              <div className="space-y-3 md:space-y-4">
+                <h2 className="text-lg md:text-xl font-bold text-base-content border-b border-gray-700 pb-2 text-center">
                  ⚙️ Configuración de Escoliosis 
                 </h2>
                 
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-medium">Grados iniciales de Escoliosis</span>
+                      <span className="label-text font-medium text-sm md:text-base">Grados iniciales de Escoliosis</span>
                     </label>
                     <input
                       type="number"
@@ -98,17 +98,17 @@ export default function ConfigEscoliosis() {
                       value={formData.initial_degrees}
                       onChange={handleInputChange}
                       placeholder="35.0"
-                      className="input input-bordered w-full"
+                      className="input input-bordered w-full text-sm md:text-base"
                       required
                     />
                     <label className="label">
-                      <span className="label-text-alt">Grados actuales de tu escoliosis</span>
+                      <span className="label-text-alt text-xs md:text-sm">Grados actuales de tu escoliosis</span>
                     </label>
                   </div>
                   
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-medium">Mejora estimada por mes</span>
+                      <span className="label-text font-medium text-sm md:text-base">Mejora estimada por mes</span>
                     </label>
                     <input
                       type="number"
@@ -117,17 +117,17 @@ export default function ConfigEscoliosis() {
                       value={formData.estimated_improvement_per_month}
                       onChange={handleInputChange}
                       placeholder="1.0"
-                      className="input input-bordered w-full"
+                      className="input input-bordered w-full text-sm md:text-base"
                       required
                     />
                     <label className="label">
-                      <span className="label-text-alt">Grados que esperas mejorar cada mes</span>
+                      <span className="label-text-alt text-xs md:text-sm">Grados que esperas mejorar cada mes</span>
                     </label>
                   </div>
 
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-medium">Horas objetivo por día</span>
+                      <span className="label-text font-medium text-sm md:text-base">Horas objetivo por día</span>
                     </label>
                     <input
                       type="number"
@@ -136,22 +136,22 @@ export default function ConfigEscoliosis() {
                       value={formData.goal_hours_per_day}
                       onChange={handleInputChange}
                       placeholder="15"
-                      className="input input-bordered w-full"
+                      className="input input-bordered w-full text-sm md:text-base"
                       required
                     />
                     <label className="label">
-                      <span className="label-text-alt">Horas que planeas usar el corset diariamente</span>
+                      <span className="label-text-alt text-xs md:text-sm">Horas que planeas usar el corset diariamente</span>
                     </label>
                   </div>
                 </div>
               </div>
 
               {/* Botón de Envío */}
-              <div className="pt-6">
+              <div className="pt-4 md:pt-6">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn btn-primary w-full btn-lg font-bold"
+                  className="btn btn-primary w-full btn-lg font-bold text-sm md:text-base"
                 >
                   {loading ? (
                     <>

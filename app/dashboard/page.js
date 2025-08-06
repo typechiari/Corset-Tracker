@@ -158,75 +158,77 @@ export default function Dashboard() {
 
   return (
     <main className="min-h-screen p-2 pb-24">
-      <section className="max-w-7xl mx-auto space-y-8">
+      <section className="max-w-7xl mx-auto space-y-6 md:space-y-8">
         <Menubar />
         
-        <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-8">
+        <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 md:space-y-8 px-4">
           {/* Calendario de Emoji */}
-          <div className="text-center space-y-4">
-            <div className="text-8xl md:text-9xl animate-bounce">
+          <div className="text-center space-y-3 md:space-y-4">
+            <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl animate-bounce">
               {getEmojiForDate(currentDate)}
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-primary">
+            <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-primary">
               {formatDate(currentDate)}
             </div>
-            <div className="text-lg text-base-content/70">
+            <div className="text-lg md:text-lg text-base-content/70">
               ¿Usaste el corset {userSettings?.goal_hours_per_day}h hoy?
             </div>
           </div>
 
           {/* Estado actual */}
           {todayLog && (
-            <div className={`text-lg font-medium px-6 py-3 rounded-full flex items-center gap-2 ${
+            <div className={`text-base md:text-lg font-medium px-4 md:px-6 py-2 md:py-3 rounded-full flex items-center gap-2 ${
               todayLog.wore_it 
                 ? 'bg-green-100 text-green-800 border-2 border-green-300' 
                 : 'bg-red-100 text-red-800 border-2 border-red-300'
             }`}>
               {todayLog.wore_it ? (
                 <>
-                  <Check className="w-6 h-6" />
-                  Sí usaste el corset hoy
+                  <Check className="w-5 h-5 md:w-6 md:h-6" />
+                  <span className="hidden sm:inline">Sí usaste el corset hoy</span>
+                  <span className="sm:hidden">Sí lo usaste</span>
                 </>
               ) : (
                 <>
-                  <X className="w-6 h-6" />
-                  No usaste el corset hoy
+                  <X className="w-5 h-5 md:w-6 md:h-6" />
+                  <span className="hidden sm:inline">No usaste el corset hoy</span>
+                  <span className="sm:hidden">No lo usaste</span>
                 </>
               )}
             </div>
           )}
 
           {/* Botones de acción */}
-          <div className="flex gap-6">
+          <div className="flex gap-4 md:gap-6 w-full max-w-sm md:max-w-none justify-center">
             <button
               onClick={() => handleLogCorset(false)}
               disabled={isLoading}
-              className={`flex items-center gap-3 px-8 py-4 rounded-full text-white font-bold text-lg transition-all duration-200 ${
+              className={`flex-1 md:flex-none flex items-center justify-center gap-2 md:gap-3 px-4 md:px-8 py-3 md:py-4 rounded-full text-white font-bold text-lg md:text-lg transition-all duration-200 ${
                 isLoading 
                   ? 'bg-gray-400 cursor-not-allowed' 
                   : 'bg-red-500 hover:bg-red-600 hover:scale-105 active:scale-95'
               }`}
             >
-              <X className="w-6 h-6" />
+              <X className="w-6 h-6 md:w-6 md:h-6" />
               No
             </button>
             
             <button
               onClick={() => handleLogCorset(true)}
               disabled={isLoading}
-              className={`flex items-center gap-3 px-8 py-4 rounded-full text-white font-bold text-lg transition-all duration-200 ${
+              className={`flex-1 md:flex-none flex items-center justify-center gap-2 md:gap-3 px-4 md:px-8 py-3 md:py-4 rounded-full text-white font-bold text-lg md:text-lg transition-all duration-200 ${
                 isLoading 
                   ? 'bg-gray-400 cursor-not-allowed' 
                   : 'bg-green-500 hover:bg-green-600 hover:scale-105 active:scale-95'
               }`}
             >
-              <Check className="w-6 h-6" />
+              <Check className="w-6 h-6 md:w-6 md:h-6" />
               Sí
             </button>
           </div>
 
           {isLoading && (
-            <div className="flex items-center gap-2 text-base-content/70">
+            <div className="flex items-center gap-2 text-base md:text-base text-base-content/70">
               <span className="loading loading-spinner loading-sm"></span>
               Guardando...
             </div>

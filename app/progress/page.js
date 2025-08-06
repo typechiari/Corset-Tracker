@@ -155,122 +155,122 @@ export default function Progress() {
       <section className="h-full max-w-7xl mx-auto">
         <Menubar />
         
-        <div className="flex flex-col lg:flex-row gap-8 h-[calc(100vh-140px)] mt-8 mb-4">
-          {/* Columna izquierda: Progreso mensual */}
-          <div className="bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-md flex flex-col">
-            <h2 className="text-xl font-bold mb-4">Progreso Mensual</h2>
-            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-base-300">
-              <div className="flex flex-col justify-between h-full">
-                {monthlyProgress.map((month) => (
-                  <div key={month.month} className="space-y-1 flex-1 flex flex-col justify-center">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium capitalize text-sm">{month.monthName}</span>
-                      <span className={`font-bold text-sm ${month.isFuture ? 'text-gray-400' : 'text-primary'}`}>
-                        {month.isFuture ? '-0.00º' : `${month.degrees.toFixed(2)}º`}
-                      </span>
-                    </div>
-                    <div className="w-full bg-base-content/20 rounded-full h-1.5">
-                      <div 
-                        className={`h-1.5 rounded-full transition-all duration-500 ${
-                          month.isFuture ? 'bg-gray-400' : 'bg-primary'
-                        }`}
-                        style={{ width: `${month.progress * 100}%` }}
-                      ></div>
-                    </div>
+                 <div className="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 h-[calc(100vh-140px)] mt-4 md:mt-8 mb-4 px-2">
+                       {/* Columna central: Tu escoliosis */}
+            <div className="bg-base-200 p-4 md:p-6 rounded-xl shadow-lg w-full lg:max-w-lg flex flex-col order-1 lg:order-2">
+              <h2 className="text-xl md:text-2xl font-bold text-center mb-6 md:mb-8">Tu Escoliosis</h2>
+              
+              {/* Número grande arriba */}
+              <div className="text-center mb-8 md:mb-10">
+                <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-primary mb-3">
+                  {calculateCurrentDegrees().toFixed(1)}º
+                </div>
+                <div className="text-sm md:text-xs text-base-content/70">
+                  {userSettings?.initial_degrees}º - {calculateTotalImprovement().toFixed(1)}º = {calculateCurrentDegrees().toFixed(1)}º
+                </div>
+              </div>
+
+              {/* Líneas de la espalda en horizontal */}
+              <div className="flex-1 flex flex-row items-center justify-center space-x-12 md:space-x-20">
+                <div className="flex flex-col items-center space-y-3 md:space-y-4">
+                  <div className="text-base md:text-sm font-medium text-gray-500">Estado inicial</div>
+                  <div className="text-base md:text-sm font-medium text-gray-500">{userSettings?.initial_degrees || 0}º</div>
+                  <div className="relative w-32 h-48 md:w-40 md:h-60">
+                    <svg className="w-full h-full" viewBox="0 0 128 192">
+                      <path
+                        d={`M 64 10 Q ${64 + (userSettings?.initial_degrees || 0) * 1.2} 128 64 182`}
+                        stroke="#6b7280"
+                        strokeWidth="4"
+                        fill="none"
+                        strokeLinecap="round"
+                        opacity="0.7"
+                      />
+                    </svg>
                   </div>
-                ))}
+                </div>
+                
+                <div className="flex flex-col items-center space-y-3 md:space-y-4">
+                  <div className="text-base md:text-sm font-medium text-blue-500">Estado actual</div>
+                  <div className="text-base md:text-sm font-medium text-blue-500">{calculateCurrentDegrees().toFixed(1)}º</div>
+                  <div className="relative w-32 h-48 md:w-40 md:h-60">
+                    <svg className="w-full h-full" viewBox="0 0 128 192">
+                      <path
+                        d={`M 64 10 Q ${64 + calculateCurrentDegrees() * 1.2} 128 64 182`}
+                        stroke="#3b82f6"
+                        strokeWidth="4"
+                        fill="none"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Columna central: Tu escoliosis */}
-          <div className="bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-md flex flex-col">
-            <h2 className="text-2xl font-bold text-center mb-6">Tu Escoliosis</h2>
-            
-            {/* Número grande arriba */}
-            <div className="text-center mb-8">
-              <div className="text-7xl font-bold text-primary mb-2">
-                {calculateCurrentDegrees().toFixed(1)}º
-              </div>
-              <div className="text-sm text-base-content/70">
-                {userSettings?.initial_degrees}º - {calculateTotalImprovement().toFixed(1)}º = {calculateCurrentDegrees().toFixed(1)}º
+            {/* Columna derecha: Grados acumulados */}
+            <div className="bg-base-200 p-8 md:p-6 rounded-xl shadow-lg w-full lg:max-w-md flex flex-col order-2 lg:order-3">
+              <h2 className="text-2xl md:text-xl font-bold mb-8 md:mb-6">Grados Mejorados</h2>
+              
+              <div className="flex-1 flex flex-col justify-evenly space-y-12 md:space-y-6">
+                {/* Total acumulado */}
+                <div className="text-center">
+                  <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-green-500 mb-2">
+                    {calculateTotalImprovement().toFixed(1)}º
+                  </div>
+                  <div className="text-lg md:text-sm text-base-content/70">
+                    Total acumulado
+                  </div>
+                </div>
+
+                {/* Promedio mensual */}
+                <div className="text-center">
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-blue-500 mb-2">
+                    {(calculateTotalImprovement() / 12).toFixed(1)}º
+                  </div>
+                  <div className="text-lg md:text-sm text-base-content/70">
+                    Promedio mensual
+                  </div>
+                </div>
+
+                {/* Mejor mes */}
+                <div className="text-center">
+                  <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-orange-500 mb-2">
+                    {Math.max(...monthlyProgress.map(m => m.degrees)).toFixed(1)}º
+                  </div>
+                  <div className="text-lg md:text-sm text-base-content/70">
+                    Mejor mes
+                  </div>
+                </div>
               </div>
             </div>
 
-                         {/* Líneas de la espalda en horizontal */}
-             <div className="flex-1 flex flex-row items-center justify-center space-x-16">
-               <div className="flex flex-col items-center space-y-3">
-                 <div className="text-sm font-medium text-gray-500">Estado inicial</div>
-                 <div className="text-sm font-medium text-gray-500">{userSettings?.initial_degrees || 0}º</div>
-                 <div className="relative w-32 h-48">
-                   <svg className="w-full h-full" viewBox="0 0 128 192">
-                     <path
-                       d={`M 64 10 Q ${64 + (userSettings?.initial_degrees || 0) * 1.2} 128 64 182`}
-                       stroke="#6b7280"
-                       strokeWidth="4"
-                       fill="none"
-                       strokeLinecap="round"
-                       opacity="0.7"
-                     />
-                   </svg>
-                 </div>
-               </div>
-               
-               <div className="flex flex-col items-center space-y-3">
-                 <div className="text-sm font-medium text-blue-500">Estado actual</div>
-                 <div className="text-sm font-medium text-blue-500">{calculateCurrentDegrees().toFixed(1)}º</div>
-                 <div className="relative w-32 h-48">
-                   <svg className="w-full h-full" viewBox="0 0 128 192">
-                     <path
-                       d={`M 64 10 Q ${64 + calculateCurrentDegrees() * 1.2} 128 64 182`}
-                       stroke="#3b82f6"
-                       strokeWidth="4"
-                       fill="none"
-                       strokeLinecap="round"
-                     />
-                   </svg>
-                 </div>
-               </div>
-             </div>
-          </div>
-
-          {/* Columna derecha: Grados acumulados */}
-          <div className="bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-md flex flex-col">
-            <h2 className="text-xl font-bold mb-6">Grados Mejorados</h2>
-            
-                         <div className="flex-1 flex flex-col justify-evenly">
-               {/* Total acumulado */}
-               <div className="text-center">
-                 <div className="text-8xl font-bold text-green-500 mb-2">
-                   {calculateTotalImprovement().toFixed(1)}º
-                 </div>
-                 <div className="text-sm text-base-content/70">
-                   Total acumulado
-                 </div>
-               </div>
-
-               {/* Promedio mensual */}
-               <div className="text-center">
-                 <div className="text-6xl font-bold text-blue-500 mb-2">
-                   {(calculateTotalImprovement() / 12).toFixed(1)}º
-                 </div>
-                 <div className="text-sm text-base-content/70">
-                   Promedio mensual
-                 </div>
-               </div>
-
-               {/* Mejor mes */}
-               <div className="text-center">
-                 <div className="text-5xl font-bold text-orange-500 mb-2">
-                   {Math.max(...monthlyProgress.map(m => m.degrees)).toFixed(1)}º
-                 </div>
-                 <div className="text-sm text-base-content/70">
-                   Mejor mes
-                 </div>
-               </div>
-             </div>
-          </div>
-        </div>
+            {/* Columna izquierda: Progreso mensual */}
+            <div className="bg-base-200 p-4 md:p-6 rounded-xl shadow-lg w-full lg:max-w-lg flex flex-col order-3 lg:order-1">
+              <h2 className="text-2xl md:text-xl font-bold mb-4 md:mb-6">Progreso Mensual</h2>
+              <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-base-300">
+                <div className="flex flex-col justify-between h-full space-y-2 md:space-y-3">
+                  {monthlyProgress.map((month) => (
+                    <div key={month.month} className="space-y-1 flex-1 flex flex-col justify-center">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium capitalize text-base md:text-sm">{month.monthName}</span>
+                        <span className={`font-bold text-base md:text-sm ${month.isFuture ? 'text-gray-400' : 'text-primary'}`}>
+                          {month.isFuture ? '-0.00º' : `${month.degrees.toFixed(2)}º`}
+                        </span>
+                      </div>
+                                             <div className="w-full bg-base-content/20 rounded-full h-1 md:h-1.5">
+                         <div 
+                           className={`h-1 md:h-1.5 rounded-full transition-all duration-500 ${
+                             month.isFuture ? 'bg-gray-400' : 'bg-primary'
+                           }`}
+                           style={{ width: `${month.progress * 100}%` }}
+                         ></div>
+                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+         </div>
       </section>
     </main>
   );

@@ -15,22 +15,13 @@ export default function Menubar() {
   };
 
   return (
-    <div className="flex justify-between items-start p-2">
-      {/* <div className="flex justify-center items-center gap-2">
-        <Image
-            src={IconImage}
-            alt="Product Demo"
-            className="w-1/6"
-            priority={true}
-            width={100}
-            height={100}
-          />*/}
-        <h1 className="text-xl md:text-xl font-extrabold pt-2">Corset Tracker</h1>
-      {/*</div>*/}
-      <div className="flex items-center gap-6 bg-[#2e373f] py-3 px-8 rounded-lg">
+    <div className="flex flex-col sm:flex-row justify-between items-start p-2 gap-3">
+      <h1 className="text-lg md:text-xl font-extrabold pt-2">Corset Tracker</h1>
+      
+      <div className="flex items-center gap-6 md:gap-6 bg-[#2e373f] py-2 md:py-3 px-4 md:px-8 rounded-lg w-full sm:w-auto justify-center">
         <Link 
           href="/dashboard" 
-          className={`font-medium transition-colors duration-200 ${
+          className={`font-medium transition-colors duration-200 text-lg md:text-base ${
             isActive('/dashboard') ? 'text-primary' : 'text-base-content hover:text-gray-300'
           }`}
         >
@@ -38,7 +29,7 @@ export default function Menubar() {
         </Link>
         <Link 
           href="/this-month" 
-          className={`font-medium transition-colors duration-200 ${
+          className={`font-medium transition-colors duration-200 text-lg md:text-base ${
             isActive('/this-month') ? 'text-primary' : 'text-base-content hover:text-gray-300'
           }`}
         >
@@ -46,14 +37,17 @@ export default function Menubar() {
         </Link>
         <Link 
           href="/progress" 
-          className={`font-medium transition-colors duration-200 ${
+          className={`font-medium transition-colors duration-200 text-lg md:text-base ${
             isActive('/progress') ? 'text-primary' : 'text-base-content hover:text-gray-300'
           }`}
         >
           Progress
         </Link>
       </div>
-      <ButtonAccount />
+      
+      <div className="w-full sm:w-auto flex justify-center">
+        <ButtonAccount />
+      </div>
     </div>
   );
 }
